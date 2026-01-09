@@ -1,0 +1,43 @@
+#include<iostream>
+#include<vector>
+using namespace std ;
+
+bool isValid(vector<int>&boards,int n,int m,int maxTime){
+    int painter=1,time=0;
+    for(int i=0;i<n;i++){
+        if(time+boards[i]<=maxTime){
+            time += boards[i];
+        }else{
+            painter++;
+            time = boards[i];
+        }
+    }
+    return (painter>m)?false:true;
+}
+int mintimeTopaint(vector<int>&boards,int n,int m){
+    int sum=0, maxVal = INT_MIN;
+
+    for(int i=0;i<n;i++){
+        sum += boards[i];
+        maxVal = max(maxVal,boards[i]);
+    }
+    int st=maxVal,end=sum;
+    int time =-1;
+    while(st<=end){
+        int mid=st+(end-st)/2;
+        if(isValid(boards,n,m, mid)){
+            end=mid-1;
+            time=mid;
+        }else{
+            st=mid+1;
+        }
+    }
+    return time;
+}
+        
+int main(){
+    vector<int>boards={40,30,10,20};
+    int n=4,m=2;
+    cout<<"Minimum time ="<<mintimeTopaint (boards,n,m)<<endl;
+    return 0 ;
+}
