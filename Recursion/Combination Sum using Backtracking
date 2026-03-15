@@ -1,0 +1,45 @@
+#include<iostream>
+#include<vector>
+#include<set>
+using namespace std ;
+set<vector<int>>s;
+void getAllCombination(vector<int>&arr,int idx,vector<int>&combin,vector<vector<int>>&ans,int tar){
+    if(idx==arr.size()||tar<0){
+        return ;
+    }
+    if(tar==0){
+        if(s.find(combin)==s.end()){
+        ans.push_back(combin);
+        s.insert(combin);
+        }
+    return ;
+    }
+    
+    combin.push_back(arr[idx]);
+    getAllCombination(arr,idx+1,combin,ans,tar-arr[idx]);
+    getAllCombination(arr,idx,combin,ans,tar-arr[idx]);
+    combin.pop_back();
+    getAllCombination(arr,idx+1,combin,ans,tar);
+}
+
+    
+    
+vector<vector<int>>combinationSum(vector<int>&arr,int tar){
+    vector<vector<int>>ans;
+    vector<int>combin;
+    getAllCombination(arr,0,combin,ans,tar);
+    return ans;
+}
+int main(){
+    vector<int>arr={2,3,5};
+    int tar=8;
+    vector<vector<int>>ans=combinationSum(arr,tar);
+    for(auto pair : ans){
+        for(int val:pair){
+            cout<<val<<" ";
+        }
+        cout<<endl;
+    }
+
+    return 0 ;
+}
