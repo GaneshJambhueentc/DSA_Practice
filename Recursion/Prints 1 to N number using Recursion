@@ -1,0 +1,22 @@
+#include <iostream>
+#include <vector>
+#include<algorithm>
+using namespace std;
+
+void printNum(int n){
+    if(n<0){
+        return;
+    }
+    cout<<n<<endl;
+
+    return printNum(n-1);
+}
+
+int main() {
+   int n;
+   cout<<"Enter A number :";
+   cin>>n;
+
+   printNum(n);
+    return 0;
+}
