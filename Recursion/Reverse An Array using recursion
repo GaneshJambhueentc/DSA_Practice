@@ -1,0 +1,27 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+void reverseArray(int i, int j, vector<int>& arr) {
+    if (i >= j) {
+        return; 
+    }
+    
+    swap(arr[i], arr[j]);             
+    reverseArray(i + 1, j - 1, arr);  
+}
+
+int main() {
+    vector<int> arr = {1, 2, 3, 4, 5, 6, 7, 8};
+    
+    reverseArray(0, arr.size() - 1, arr);
+
+    for (int val : arr) {
+        cout << val << " ";
+    }
+    cout << "\n";
+
+    return 0;
+}
