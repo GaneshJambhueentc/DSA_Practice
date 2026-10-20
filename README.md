@@ -3,4 +3,5 @@ My DSA practice problems solved in C++
 # Folders 
    ## Array 
    ## Strings 
-   ## Recursion 
+   ## Recursion
+   ## Basic Maths 
